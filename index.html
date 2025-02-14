@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حساب الفاتورة</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .item label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .item input {
+            width: 100px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>حساب الفاتورة الإجمالية</h1>
+        
+        <!-- الرز -->
+        <div class="item">
+            <label for="ricePrice">سعر الرز (لكل كيلو):</label>
+            <input type="number" id="ricePrice" placeholder="السعر">
+            <label for="riceQuantity">الكمية (كيلو):</label>
+            <input type="number" id="riceQuantity" placeholder="الكمية">
+        </div>
+        
+        <!-- المكرونة -->
+        <div class="item">
+            <label for="pastaPrice">سعر المكرونة (لكل كيلو):</label>
+            <input type="number" id="pastaPrice" placeholder="السعر">
+            <label for="pastaQuantity">الكمية (كيلو):</label>
+            <input type="number" id="pastaQuantity" placeholder="الكمية">
+        </div>
+        
+        <!-- البطاطس -->
+        <div class="item">
+            <label for="potatoPrice">سعر البطاطس (لكل كيلو):</label>
+            <input type="number" id="potatoPrice" placeholder="السعر">
+            <label for="potatoQuantity">الكمية (كيلو):</label>
+            <input type="number" id="potatoQuantity" placeholder="الكمية">
+        </div>
+        
+        <!-- الطماطم -->
+        <div class="item">
+            <label for="tomatoPrice">سعر الطماطم (لكل كيلو):</label>
+            <input type="number" id="tomatoPrice" placeholder="السعر">
+            <label for="tomatoQuantity">الكمية (كيلو):</label>
+            <input type="number" id="tomatoQuantity" placeholder="الكمية">
+        </div>
+        
+        <!-- البصل -->
+        <div class="item">
+            <label for="onionPrice">سعر البصل (لكل كيلو):</label>
+            <input type="number" id="onionPrice" placeholder="السعر">
+            <label for="onionQuantity">الكمية (كيلو):</label>
+            <input type="number" id="onionQuantity" placeholder="الكمية">
+        </div>
+        
+        <!-- نتيجة الإجمالي -->
+        <div class="result" id="totalBill">الإجمالي: 0 جنيه</div>
+    </div>
+
+    <script>
+        // العناصر المدخلة
+        const inputs = document.querySelectorAll('input');
+        
+        // دالة لحساب الإجمالي
+        function calculateTotal() {
+            const riceTotal = parseFloat(document.getElementById('ricePrice').value || 0) * parseFloat(document.getElementById('riceQuantity').value || 0);
+            const pastaTotal = parseFloat(document.getElementById('pastaPrice').value || 0) * parseFloat(document.getElementById('pastaQuantity').value || 0);
+            const potatoTotal = parseFloat(document.getElementById('potatoPrice').value || 0) * parseFloat(document.getElementById('potatoQuantity').value || 0);
+            const tomatoTotal = parseFloat(document.getElementById('tomatoPrice').value || 0) * parseFloat(document.getElementById('tomatoQuantity').value || 0);
+            const onionTotal = parseFloat(document.getElementById('onionPrice').value || 0) * parseFloat(document.getElementById('onionQuantity').value || 0);
+            
+            const total = riceTotal + pastaTotal + potatoTotal + tomatoTotal + onionTotal;
+            document.getElementById('totalBill').textContent = `الإجمالي: ${total.toFixed(2)} جنيه`;
+        }
+        
+        // تحديث الإجمالي تلقائيًا عند تغيير القيم
+        inputs.forEach(input => {
+            input.addEventListener('input', calculateTotal);
+        });
+    </script>
+</body>
+              </html>
